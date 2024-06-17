@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/profile.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="main">
+    <div class="head">
+    <h2 class="heading">Task</h2>
+    <a  href="/user/logout"><button class="delete">Logout</button></a>
+    </div>
+    
+        <form action="/user/task/add" method="post">
+            <div class="input1">
+        <input name="work" type="text" required placeholder="Enter A Task" class="input" >
+            </div>
+            <div class="input1">
+                <textarea name="desc" required placeholder="Description" type="textarea" class="desc"></textarea>
+            </div>
+        <button class="submit" type="submit">Add</button>
+        </form>
+    </div>
+    
+    <div class="container">
+        <% task.forEach(val=>{%>
+            <div class="list" >
+            <div class="title"><%= val.title %></div>
+            <div class="desc"><%= val.desc %></div>
+            <div class="outerbtn">
+               <form action="/user/task/delete/<%=val._id %>?_method=DELETE" method="post">
+                <button class="btn" type="submit">Delete</button>
+               </form>  
+               <!-- <form action="/user/task/update/<%=val._id %>?_method=PUT" method="post">
+                <input type="checkbox" value="<%=val.done %>" onchange="this.form.submit()  ">
+               </form>    -->
+            </div>
+            </div>
+      <% }) %>
+    </div>
+    
+</body>
+</html>
